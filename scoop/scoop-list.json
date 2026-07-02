@@ -1,0 +1,232 @@
+﻿{
+    "buckets": [
+        {
+            "Name": "main",
+            "Source": "https://github.com/ScoopInstaller/Main",
+            "Updated": {
+                "value": "\/Date(1782970894000)\/",
+                "DisplayHint": 2,
+                "DateTime": "2026年7月2日 13:41:34"
+            },
+            "Manifests": 1593
+        },
+        {
+            "Name": "extras",
+            "Source": "https://github.com/ScoopInstaller/Extras",
+            "Updated": {
+                "value": "\/Date(1782973065000)\/",
+                "DisplayHint": 2,
+                "DateTime": "2026年7月2日 14:17:45"
+            },
+            "Manifests": 2324
+        },
+        {
+            "Name": "versions",
+            "Source": "https://github.com/ScoopInstaller/Versions",
+            "Updated": {
+                "value": "\/Date(1782966862000)\/",
+                "DisplayHint": 2,
+                "DateTime": "2026年7月2日 12:34:22"
+            },
+            "Manifests": 592
+        }
+    ],
+    "apps": [
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "7zip",
+            "Version": "26.02",
+            "Updated": "\/Date(1782580416287)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "bat",
+            "Version": "0.26.1",
+            "Updated": "\/Date(1782581042838)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "bun",
+            "Version": "1.3.14",
+            "Updated": "\/Date(1782581086206)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "cmake",
+            "Version": "4.3.4",
+            "Updated": "\/Date(1782580859505)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "delta",
+            "Version": "0.19.2",
+            "Updated": "\/Date(1782581103651)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "deno",
+            "Version": "2.9.1",
+            "Updated": "\/Date(1782974054043)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "eza",
+            "Version": "0.23.4",
+            "Updated": "\/Date(1782581044029)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "fd",
+            "Version": "10.4.2",
+            "Updated": "\/Date(1782581030954)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "fzf",
+            "Version": "0.73.1",
+            "Updated": "\/Date(1782581033323)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "gh",
+            "Version": "2.95.0",
+            "Updated": "\/Date(1782581099426)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "git",
+            "Version": "2.55.0",
+            "Updated": "\/Date(1782974069562)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "go",
+            "Version": "1.26.4",
+            "Updated": "\/Date(1782580994099)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "jq",
+            "Version": "1.8.2",
+            "Updated": "\/Date(1782581034621)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "lazygit",
+            "Version": "0.62.2",
+            "Updated": "\/Date(1782581101656)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "llvm",
+            "Version": "22.1.8",
+            "Updated": "\/Date(1782580770873)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "mingw",
+            "Version": "16.1.0-rt_v14-rev1",
+            "Updated": "\/Date(1782580830892)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "ninja",
+            "Version": "1.13.2",
+            "Updated": "\/Date(1782580860290)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "nodejs",
+            "Version": "26.4.0",
+            "Updated": "\/Date(1782580937300)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "pnpm",
+            "Version": "11.9.0",
+            "Updated": "\/Date(1782581063195)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "pwsh",
+            "Version": "7.6.3",
+            "Updated": "\/Date(1782974006432)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "ripgrep",
+            "Version": "15.1.0",
+            "Updated": "\/Date(1782581029162)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "rustup",
+            "Version": "1.29.0",
+            "Updated": "\/Date(1782580915702)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "uv",
+            "Version": "0.11.26",
+            "Updated": "\/Date(1782974072398)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "vcpkg",
+            "Version": "2026.06.24",
+            "Updated": "\/Date(1782581181663)\/"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "vcredist2022",
+            "Version": "14.51.36247.0",
+            "Updated": "\/Date(1782581225234)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "yarn",
+            "Version": "1.22.22",
+            "Updated": "\/Date(1782581066387)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "yq",
+            "Version": "4.53.3",
+            "Updated": "\/Date(1782581040937)\/"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "zoxide",
+            "Version": "0.9.9",
+            "Updated": "\/Date(1782581045320)\/"
+        }
+    ]
+}
