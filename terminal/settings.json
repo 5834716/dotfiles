@@ -68,6 +68,24 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 18",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{dae84e36-ec4d-54fc-b44a-3db3937cdc9e}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{61e21163-9d18-5a49-b0e3-ed511288f96b}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{ee79de2b-c33a-5c70-a963-75f6e74c52dd}",
+                "hidden": false,
+                "name": "Ubuntu-24.04",
+                "source": "Microsoft.WSL"
             }
         ]
     },

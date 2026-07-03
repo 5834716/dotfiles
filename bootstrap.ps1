@@ -1,4 +1,4 @@
-# ============================================================
+﻿# ============================================================
 #  bootstrap.ps1  —  新机器一键还原开发环境
 #  用法: 在仓库根目录执行  .\bootstrap.ps1
 # ============================================================
@@ -26,6 +26,10 @@ New-Item -ItemType Directory -Force -Path "$doc\PowerShell", "$doc\WindowsPowerS
 Copy-Item "$repo\powershell\profile.ps1" "$doc\PowerShell\profile.ps1" -Force
 Copy-Item "$repo\powershell\profile.ps1" "$doc\WindowsPowerShell\profile.ps1" -Force
 Copy-Item "$repo\git\gitconfig" "$env:USERPROFILE\.gitconfig" -Force
+Copy-Item "$repo\dev\doctor.ps1", "$repo\dev\upgrade.ps1" 'D:\dev\' -Force
+[Environment]::SetEnvironmentVariable('RUSTC_WRAPPER','sccache','User')
+[Environment]::SetEnvironmentVariable('SCCACHE_DIR','D:\dev\tmp\sccache','User')
+[Environment]::SetEnvironmentVariable('SCCACHE_CACHE_SIZE','20G','User')
 
 $wt = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
 if (Test-Path $wt) {
