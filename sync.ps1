@@ -13,8 +13,6 @@ if (Test-Path $wt) { Copy-Item $wt "$repo\terminal\settings.json" -Force }
 scoop export | Out-File -Encoding utf8 "$repo\scoop\scoop-list.json"
 New-Item -ItemType Directory -Force -Path "$repo\dev" | Out-Null
 Copy-Item D:\dev\doctor.ps1, D:\dev\upgrade.ps1 "$repo\dev\" -Force
-New-Item -ItemType Directory -Force -Path "$repo\cursor\rules" | Out-Null
-Copy-Item D:\.cursor\rules\*.mdc "$repo\cursor\rules\" -Force -ErrorAction SilentlyContinue
 
 Write-Host '已收集本机配置, 变更如下:' -ForegroundColor Green
 git -C $repo status --short

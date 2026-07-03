@@ -27,8 +27,6 @@ Copy-Item "$repo\powershell\profile.ps1" "$doc\PowerShell\profile.ps1" -Force
 Copy-Item "$repo\powershell\profile.ps1" "$doc\WindowsPowerShell\profile.ps1" -Force
 Copy-Item "$repo\git\gitconfig" "$env:USERPROFILE\.gitconfig" -Force
 Copy-Item "$repo\dev\doctor.ps1", "$repo\dev\upgrade.ps1" 'D:\dev\' -Force
-New-Item -ItemType Directory -Force -Path 'D:\.cursor\rules' | Out-Null
-Copy-Item "$repo\cursor\rules\*.mdc" 'D:\.cursor\rules\' -Force -ErrorAction SilentlyContinue
 [Environment]::SetEnvironmentVariable('RUSTC_WRAPPER','sccache','User')
 [Environment]::SetEnvironmentVariable('SCCACHE_DIR','D:\dev\tmp\sccache','User')
 [Environment]::SetEnvironmentVariable('SCCACHE_CACHE_SIZE','20G','User')
