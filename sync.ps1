@@ -12,7 +12,7 @@ $wt = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalS
 if (Test-Path $wt) { Copy-Item $wt "$repo\terminal\settings.json" -Force }
 scoop export | Out-File -Encoding utf8 "$repo\scoop\scoop-list.json"
 New-Item -ItemType Directory -Force -Path "$repo\dev" | Out-Null
-Copy-Item D:\dev\doctor.ps1, D:\dev\upgrade.ps1 "$repo\dev\" -Force
+Copy-Item D:\dev\doctor.ps1, D:\dev\upgrade.ps1, D:\dev\开发环境.txt "$repo\dev\" -Force
 
 Write-Host '已收集本机配置, 变更如下:' -ForegroundColor Green
 git -C $repo status --short

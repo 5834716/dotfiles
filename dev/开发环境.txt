@@ -1,0 +1,136 @@
+========================================================
+  开发环境总览  (D:\dev)
+  全英文路径 · 无盘符映射 · 全栈最新
+========================================================
+
+【设计原则】
+- 这个文件夹只放"环境"(编译器/运行时/工具链)，项目代码请另放别处。
+- 全英文路径，不用盘符映射。换硬盘可直接整盘复制 D:\dev。
+- 文件夹内一切归当前账户所有，可随意移动/修改。
+
+【目录结构】
+  D:\dev\
+    scoop\   所有命令行工具 + 语言运行时 (Scoop 包管理)
+    qt\      Qt 6.10.3 (msvc2022_64)
+    vs\      VS 2026 生成工具 (MSVC 编译器 + Windows SDK 引导)
+    wsl\     WSL2 Ubuntu 24.04 (ext4.vhdx，含 Docker)
+    cursor\  Cursor 编辑器
+    tmp\     临时 / 验证用 (含 sccache 编译缓存)
+    doctor.ps1   环境体检脚本 (详见"怎么用")
+    upgrade.ps1  安全升级脚本 (快照→升级→体检)
+
+--------------------------------------------------------
+  语言 & 编译器
+--------------------------------------------------------
+  C/C++ (MSVC)    VS 2026  cl 19.51 (MSVC 14.51.36231)  位于 D:\dev\vs，需先 call vcvars64.bat
+                  已装英文语言包(en-US) + 用户环境变量 VSLANG=1033 → cl 输出英文。
+                  (原因: 中文 /showIncludes 前缀会破坏 CMake+Ninja 的头文件依赖追踪,
+                   导致改了 .h 不重编 .cpp 的"幽灵旧代码"问题。勿删英文包/勿改 VSLANG)
+  C/C++ (Clang)   clang 22.1.8
+  C/C++ (MinGW)   gcc / g++ 16.1.0
+  Rust            rustc / cargo 1.96.0   (默认 MSVC 工具链, GNU 也已安装可用)
+  Go              1.26.4
+  Node.js         26.4.0   (+ pnpm 11.9 / yarn 1.22 / bun 1.3.14 / deno 2.9)
+  Python          3.14.6   (用 uv 管理: uv run / uv pip)
+
+--------------------------------------------------------
+  构建 & C++ 包管理
+--------------------------------------------------------
+  CMake   4.3.4
+  Ninja   1.13.2
+  vcpkg   2026.06.24
+          工具链文件: D:\dev\scoop\apps\vcpkg\current\scripts\buildsystems\vcpkg.cmake
+
+--------------------------------------------------------
+  GUI 框架
+--------------------------------------------------------
+  Qt   6.10.3 MSVC 版   D:\dev\qt\6.10.3\msvc2022_64   (Win10+ 项目用)
+       模块: 5compat / multimedia / imageformats / shadertools / charts /
+             quick3d / networkauth / websockets / webchannel / positioning /
+             serialport / connectivity
+  Qt   5.15.2 MinGW 32位   D:\dev\qt\5.15.2\mingw81_32   (Win7 兼容项目用, 如冬季旋转)
+       配套编译器: D:\dev\qt\Tools\mingw810_32 (GCC 8.1.0, 32位, 与 Qt 官方 ABI 配套)
+       安装方式: uvx --from aqtinstall aqt install-qt windows desktop 5.15.2 win32_mingw81 -O D:\dev\qt
+                 uvx --from aqtinstall aqt install-tool windows desktop tools_mingw qt.tools.win32_mingw810 -O D:\dev\qt
+       注意: 编译时须把上面两个 bin 目录加进 PATH, 用 qmake+mingw32-make 或 CMake+MinGW
+       注意: MinGW 的 make 不认中文路径。中文路径下的项目(如 D:\开发\项目\冬季旋转)
+             构建时用项目自带 scripts\build.ps1: 它临时 subst 映射 X: -> 项目根,
+             构建完自动解除。系统平时保持"无盘符映射"原则不变。
+
+--------------------------------------------------------
+  其他
+--------------------------------------------------------
+  Windows SDK   10.0.26100.0   (C:\Program Files (x86)\Windows Kits\10)
+  Shell         PowerShell 7 (pwsh)   profile 已配置 zoxide/fzf/eza 别名/vcvars 快捷命令
+                profile 位置: 文档\PowerShell\profile.ps1 (PS5.1 同步一份在 文档\WindowsPowerShell\)
+  版本控制      Git 2.55.0 / gh 2.95.0 / lazygit 0.62.2 / delta 0.19.2
+  安装包制作    Inno Setup 6.7.3 (iscc)   已配简体中文语言包(Languages\ChineseSimplified.isl)
+  命令行神器    ripgrep(rg) 15.1 / fd 10.4 / fzf 0.73 / jq 1.8 / yq 4.53 /
+                bat 0.26 / eza 0.23 / zoxide 0.9.9 / 7zip 26.02
+  编译缓存      sccache 0.16 (已设 RUSTC_WRAPPER=sccache, 缓存在 D:\dev\tmp\sccache, 上限 20G;
+                C/C++ 想用时 CMake 加 -DCMAKE_C(XX)_COMPILER_LAUNCHER=sccache)
+  排障工具      Sysinternals 套件 20260617 (procexp / procmon / procdump / handle /
+                vmmap / tcpview / dbgview / psping 等, 全部已建 shim 可直接敲命令)
+  Linux 子系统  WSL2 Ubuntu 24.04.4 LTS   D:\dev\wsl\ext4.vhdx
+                默认用户 root，含 Docker 29.1.3。进入命令: wsl
+  编辑器        Cursor (AI 代码编辑器)   D:\dev\cursor
+
+========================================================
+  怎么用
+========================================================
+
+[普通编译] 直接开终端敲命令(已全在 PATH):
+    clang++ a.cpp -o a.exe
+    gcc a.c -o a.exe
+    cargo new myapp  /  cargo build
+    go run main.go
+    node app.js
+    uv run python app.py
+
+[用 MSVC(cl) 或 编译 Qt] 必须先初始化 MSVC 环境:
+    call "D:\dev\vs\VC\Auxiliary\Build\vcvars64.bat"
+    cl /EHsc a.cpp
+  (PowerShell 里直接敲 vcvars 即可, profile 里已内置该命令)
+
+[Qt + CMake 工程] (推荐方式):
+    call "D:\dev\vs\VC\Auxiliary\Build\vcvars64.bat"
+    cmake -G Ninja -DCMAKE_CXX_COMPILER=cl -DCMAKE_PREFIX_PATH=D:/dev/qt/6.10.3/msvc2022_64 .
+    ninja
+  运行前把 Qt 的 bin 加进 PATH(以便找到 Qt6Core.dll 等):
+    set PATH=D:\dev\qt\6.10.3\msvc2022_64\bin;%PATH%
+
+[装 / 搜 工具]
+    scoop search <名字>
+    scoop install <名字>
+
+[体检环境] 干活前 / 出问题时先跑:
+    pwsh D:\dev\doctor.ps1          快速体检 (版本+路径, 约10秒)
+    pwsh D:\dev\doctor.ps1 -Build   完整体检 (每条工具链真编译真运行, 约1分钟)
+
+[升级所有工具] 不要直接 scoop update *, 用安全升级脚本:
+    pwsh D:\dev\upgrade.ps1
+    (自动: 版本快照存 D:\dotfiles\scoop\snapshots → 升级 → 清理 → 体检;
+     升级坏了按快照回退: scoop install <app>@<旧版本>)
+
+========================================================
+  换新硬盘 / 重装系统 后
+========================================================
+  ★ 推荐方式: 配置已代码化, 直接用 dotfiles 仓库一键还原
+     git clone https://github.com/5834716/dotfiles D:\dotfiles
+     cd D:\dotfiles ; .\bootstrap.ps1
+     (自动装 Scoop + 全部工具 + 恢复 PowerShell/Git/Terminal 配置)
+     日常改了配置后: cd D:\dotfiles ; .\sync.ps1 然后 commit + push
+
+  手动方式(整盘复制):
+  1. 把 D:\dev 整盘复制到新机器同样位置 (D:\dev)。
+  2. 设环境变量: SCOOP = D:\dev\scoop。
+  3. 把 D:\dev\scoop\shims 及各 apps\*\current\bin 加进 PATH。
+  4. VS / Qt 若复制后异常，按上面版本号到官网重装。
+  5. WSL 复制后就地注册: wsl --import-in-place Ubuntu-24.04 D:\dev\wsl\ext4.vhdx
+  6. 装 Cursor 编辑器(本机装在 D:\dev\cursor)。
+  注: Windows SDK 装在 C 盘，复制 D:\dev 不含它，随 VS 生成工具一起重装即可。
+  注: Scoop 工具清单 / Git 配置 / PowerShell profile 的最新版本都在 dotfiles 仓库里。
+
+  全工具链已验证真编译真运行通过:
+  MinGW / Clang / MSVC(VS2026) / Rust / Go / Python / Node / Qt6+CMake+Ninja
+========================================================
